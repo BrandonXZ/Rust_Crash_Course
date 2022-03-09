@@ -19,3 +19,5 @@ pub fn run(){
     println!("{} is {}", my_name, my_age);
     
 }
+
+//next concept -> types.rs

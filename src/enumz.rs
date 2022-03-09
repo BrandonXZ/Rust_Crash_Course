@@ -29,3 +29,5 @@ pub fn run(){
     move_avatar(avatar3);
     move_avatar(avatar4);
 }
+
+//next concept -> functions.rs

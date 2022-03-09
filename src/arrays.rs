@@ -29,6 +29,6 @@ pub fn run(){
     let slice: &[i32] = &numbers[1..3]; // magic....
     println!("Slice: {:?}", slice);
 
-
-
 }
+
+//next concept -> structs.rs

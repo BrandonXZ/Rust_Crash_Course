@@ -30,3 +30,5 @@ pub fn run(){
     let is_of_age = if age >= 21 {true} else {false};
     println!("Is of age: {}",is_of_age)
 }
+
+//next concept -> loops.rs

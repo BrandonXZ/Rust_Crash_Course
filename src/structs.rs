@@ -94,5 +94,6 @@ pub fn run(){
     println!(".....new example call.....");
     println!("Person Tuple {:?}", p.to_tuple());
 
-
 }
+
+//next concept -> enumz.rs

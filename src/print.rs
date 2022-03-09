@@ -21,5 +21,7 @@ pub fn run(){
     //basic math 
     println!("10 + 10 = {}", 10 + 10);
 
-
+   
 }
+
+//next concept -> var.rs

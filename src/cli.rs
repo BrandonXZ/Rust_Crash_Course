@@ -23,3 +23,5 @@ pub fn run() {
 
 //when running from the command line, the argument is passed after the function name you are calling 
 //ex. "cargo run hello" or "cargo run status"  
+
+//next concept -> vectors.rs
