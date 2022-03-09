@@ -6,7 +6,7 @@
 > Go to your git enabled IDE or download the zip.
 > Go to the src folder in the IDE.
 > Open the "main.rs" and "print.rs" module.
-> Remove the comments characters "//" in the main.rs file for the "mod print.rs" import statement and and the function call in main "print::run()";
+> Remove the comments characters "//" in the main.rs file for the "mod print.rs" import statement and the function call in main "print::run()";
 > Save the file.
 > Open a new terminal window in the ide or command prompt and navigate to the active directory you cloned this git repo into.
 > Type "cargo run", and press enter.
