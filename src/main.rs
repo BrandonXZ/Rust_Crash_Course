@@ -3,6 +3,7 @@
 //mod vars;
 //mod types;
 //mod strings;
+//mod strings2;
 //mod tuples;
 //mod arrays;
 //mod vectors;
@@ -10,16 +11,17 @@
 //mod loops;
 //mod functions;
 //mod pointers_ref;
-//mod structs;
+mod structs;
 //mod enumz;                         // enum is a keyword, so z was added.
 //mod cli;
-mod error_handling;
+//mod error_handling;
 
 fn main() {
     //print::run();
     //vars::run();
     //types::run();
     //strings::run();
+    //string2::run();
     //tuples::run();
     //arrays::run();
     //vectors::run();
@@ -27,10 +29,10 @@ fn main() {
     //loops::run();
     //functions::run();
     //pointers_ref::run();
-    //structs::run();
+    structs::run();
     //enumz::run();
     //cli::run();
-    error_handling::run();
+    //error_handling::run();
 }
     
                   //Be sure to replace the "//" comment characters back to the import statement and function call for the previous concept when moving to the next one.
