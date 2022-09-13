@@ -2,7 +2,7 @@
  * A dummied down example of looping through something to generate ui elements and referencing each of those elements (i.e their values,attributes, etc.) correctly
  */
 
-
+#[derive(Hash)]
 pub struct MyApp {
     pub name: String,
     pub age: u32,
@@ -19,7 +19,7 @@ impl Default for MyApp {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Hash)]
 pub struct Members {
     pub name: String, 
     pub age: u32, 
@@ -34,10 +34,3 @@ impl Default for Members {
     }
 }
 
-// impl Vector for Members {
-//     fn to_vec() -> Self {
-//         Self {
-
-//         }
-//     }
-// }
