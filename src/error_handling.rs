@@ -3,7 +3,7 @@
 //Errors are split into 2 categories, recoverables and non-recoverables...will the program crash after error or is there a way to salvage and try again?
 //Rust doesn't use the idea of null, instead it used the option and result enums
 //unrecoverable examples are program stop or thread panick
-#[allow(dead_code)]
+#![allow(dead_code)]
 pub fn run(){
     // let v = vec![1,2];                //Remove comment char to see example of a thread panick. index out of bound, there are only 2 options but we're calling the 50th option
     // v[50]                            //Backtrace=1 will walk you through how this happened(for more complex functions)
