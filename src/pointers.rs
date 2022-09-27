@@ -1,11 +1,13 @@
 #![allow(unused)]
 #![allow(non_snake_case)]
-use std::{cell::{RefCell, Cell}, rc::Rc};
+#![allow(unused_imports)]
+use std::{cell::{RefCell, Cell}, rc::Rc, ops::Deref};
 
 /**
  * This module elaborates on how to use different types of pointers in rust 
  * which seem like an instrumental tool when working with gui's
  * when used with lifetimes/generics
+ * Smart pointers are structs that implement the deref trait and drop trait
  * 
  */
 
@@ -14,6 +16,7 @@ pub fn run() {
     basic_pointers();
     simple_pointer_example();
     simple_box_example();
+    another_pointer_example();
  }
 
  /**************************************************Function/Example Definintions**************************************************** */
@@ -112,4 +115,38 @@ pub fn run() {
     println!("(Ex. 1-c) stolen2 is: {}", stolen2);                       //example using borrow instead of pointer
  }
 
+
+/**********************************************************Another Example *************************************************************/
+
+ use List::{Cons, Nil}; 
+enum List {
+    Cons(i32, Box<List>),        //tuple that holds integer and a list(this enum), so its recursive
+    Nil,                         //with recursive enums, we don't know how much space is taken up...
+                            //**Cons list is a data structure that comes from list and basically stores a value and a pointer to the next box until it gets to nil(no value) */
+ }
+
+/** The rust compiler states :error[E0072]: recursive type `List` has infinite size and suggests: 
+ * Cons(i32, Box<List>),        //tuple that holds integer and a list(this enum), so its recursive
+   |         ++++    +
+*/
+
+
+
+
+ /**
+  * The basic idea behind this example is that we can compile a type of unknown type(the Cons list because its recursive)   
+  * by wrapping it in the Box pointer which allows us to point to its value on the heap
+  * we then use the pointer as our fixed size essentially to get it to compile...
+  * We do this by wrapping the list items in box's and the enum variant in the box  
+  */
+pub fn another_pointer_example() {
+    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil)
+                         )           )    )           )     ); //ignore the weirdness
+
+}
+
+/********************End Another Pointer Example ******************************/
+
+
+/*************************************************************Smart Pointer Deref Trait************************************************************/
 
