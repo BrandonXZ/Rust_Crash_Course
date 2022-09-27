@@ -13,7 +13,10 @@
 //mod structs;
 //mod enumz;                         // enum is a keyword, so z was added.
 //mod cli;
-mod error_handling;
+// mod error_handling;
+// mod simple_lifetime;
+mod pointers;
+mod scrap;
 
 fn main() {
     //print::run();
@@ -30,7 +33,10 @@ fn main() {
     //structs::run();
     //enumz::run();
     //cli::run();
-    error_handling::run();
+    // error_handling::run();
+    // simple_lifetime::run();
+    pointers::run();
+    scrap::run()
 }
     
                   //Be sure to replace the "//" comment characters back to the import statement and function call for the previous concept when moving to the next one.

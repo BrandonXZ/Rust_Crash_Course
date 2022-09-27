@@ -11,11 +11,15 @@
 mod types;
 mod persist_breakdown;
 
+use std::process::exit;
 use eframe::egui;
 use egui::{Memory, Id, util::IdTypeMap};
 use std::{hash::{Hash, Hasher}, collections::hash_map::DefaultHasher};
 
 fn main() { 
+    // persist_breakdown::run();
+    // exit(87);
+
     let options = eframe::NativeOptions::default();
     let mut member_vec = vec![];
     let name1 = types::Members { name:"Alpha".to_string(), age: 16}; 
@@ -30,7 +34,7 @@ fn main() {
         options,
         Box::new(|_cc| Box::new(app_instance)),
     );
-    persist_breakdown::run();
+    
 }
 
 
