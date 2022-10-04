@@ -1,7 +1,7 @@
 <u><b>To get started in rust:</b></u></br>
 <i> Assuming you have the rust compiler installed(c++compiler files for vs code or other requirements installed)</i>
 
-<i>Quite a few people should already know basic programming enough to skip this section but this is attempting to leave no stone unturned as this guide will go up to far more advanced topics.</i>
+<i>Quite a few people should already know basic programming enough to skip this section but this is attempting to leave no stone unturned, since this guide will go up to far more advanced topics.</i>
 
 > - Go to your git enabled IDE or download the zip.
 > - Go to the src folder in the IDE.
