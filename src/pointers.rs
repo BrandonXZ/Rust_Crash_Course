@@ -17,6 +17,9 @@ pub fn run() {
     simple_pointer_example();
     simple_box_example();
     another_pointer_example();
+    simple_deref_example();
+    drop_trait_example();
+    drop_trait_altered_behavior();
  }
 
  /**************************************************Function/Example Definintions**************************************************** */
@@ -86,7 +89,7 @@ pub fn run() {
 
   /**
   * This example goes over the box smart pointer which is a reference to a heap allocation holding another value
-  * There are 2 types of boxes, manages and owned owned boxes are simply boxes instantiated at creation like variable "owned" below
+  * There are 2 types of boxes, managed and owned. owned boxes are simply boxes instantiated at creation like variable "owned" below
   * Boxes don't have any overhead other than storing on the heap but don't have many other capabilities either
   * Typical Use Case: (1) When you have a type whose exact size can't be known at compile time and you want to use a value of that type in a context which requires
   * knowing the exact size. (2) When you have a large amount of data and  you want to transfer ownership of that data but want to ensure this is done without copying
@@ -149,4 +152,81 @@ pub fn another_pointer_example() {
 
 
 /*************************************************************Smart Pointer Deref Trait************************************************************/
+
+ //The Deref Trait
+ struct MyBox<T>(T);
+
+ impl<T> MyBox<T> {              //here we recreate the box pointer but theres a big diff since x is not stored on the heap but for now its ok because we're focusing on deref
+     fn new(x: T) -> MyBox<T> {
+         MyBox(x)
+     }
+ } 
+ 
+ impl<T> Deref for MyBox<T> {
+     type Target = T;
+ 
+     fn deref(&self) -> &Self::Target {      //we can also simply write -> &T
+         &self.0                             //return reference to first item in our tuple struct which
+     }
+ }
+
+ 
+ pub fn simple_deref_example() {
+
+    let x = 5;  
+    assert_eq!(5, x); 
+    
+    let y = &x;                 //ref to x, y is a basic pointer
+    assert_eq!(5, *y);                //pointer here//dereferencing y 
+    // assert_eq!(5, y);              //throws error: error[E0277]: can't compare `{integer}` with `&{integer}` which is why we use the dereference 
+
+    let z = Box::new(x);    //in this case Z is pointing to a "copy" of 
+    assert_eq!(5, *z);                //and so the box allows us to deref the same way but is almost a cheat since ints are copied when passed to a function anyway
+
+    let z1 = MyBox::new(x);
+    assert_eq!(5, *z1);               //Error until deref is impl for MyBox
+                                      //without the deref trait being impl the compiler only knows how to deref references.                                 
+ }
+
+
+/**************************************************************Drop trait********************************************************************/
+/**
+ * The drop trait allows you to customize what happens when a value goes out of scope. Usually used when implementing a smart pointer
+ * The main goal for box pointers, for example, is to deallocate the data stored on the heap.
+ */
+
+ //The drop trait 
+ struct CustomSmartPointer {
+    data: String,
+ }
+ impl Drop for CustomSmartPointer {
+     fn drop(&mut self) {
+         println!("dropping the CustomSmartPointer with data {}!", self.data);
+     }
+ }
+
+
+ pub fn drop_trait_example() {
+
+    let c = CustomSmartPointer { data: String::from("my stuff"), };
+    let d = CustomSmartPointer { data: String::from("other stuff"), };
+    println!("CustomSmartPointer created.");
+
+    //at the end of main both smart pointers go out of scope and rust automatically calls the drop trait
+    //Note that rust doesn't allow you to call the drop method directly.
+ }
+
+
+ pub fn drop_trait_altered_behavior() {
+    let c = CustomSmartPointer { data: String::from("some data"), };
+    println!("CustomSmartPonter created. "); 
+    // c.drop();                                //will not compile due to inability to use drop | error[E0040]: explicit use of destructor method
+    drop(c);                                        //we can however use this rop from rust's std lib       
+    println!("CustomSmartPointer dropped before the end of main.");
+ }
+
+ /**************************************************************Reference Counter********************************************************************/
+
+ 
+
 

@@ -16,44 +16,32 @@ use std::{cell::{RefCell, Cell}, rc::Rc, ops::Deref};
  */
 
  /****************************************************Function Definitions********************************************* */
+// Reference Counting Smart pointer
+/**
+ * This covers the reference counter smart pointer, which allows you to share ownership of some data.
+ * To enable multiple ownership for a value, the RC counter keeps track of the number of references 
+ * to the value and cleans up when there are no more references. The RC smartpointer is used when we want to allocate a value on the heap
+ * and have multiple parts read that value and don't know which part is going to finish using the data last. Thee examples only relate to 
+ * single threaded programs **see threads** 
+ */
 
- //The Deref Trait
-struct MyBox<T>(T);
+ enum List {
+    Cons(i32, Box<List>),                                       //we could change definition of cons variant to hold references instead of owned values
+    Nil,                                                        //but that would require the use of lifetimes, and is essentially us specifying
+}                                                               //that every element in the list has to live atleast as long as the list itself 
+                                                                //in this case we replace Cons(i32, Box<List>) < with 
 
-impl<T> MyBox<T> {              //here we recreate the box pointer but theres a big diff since x is not stored on the heap but for now its ok because we're focusing on deref
-    fn new(x: T) -> MyBox<T> {
-        MyBox(x)
-    }
-} 
-
-impl<T> Deref for MyBox<T> {
-    type Target = T;
-
-    fn deref(&self) -> &Self::Target {      //we can also simply write -> &T
-        &self.0                             //return reference to first item in our tuple struct which
-    }
-}
+ use List::{Cons, Nil}; 
 
  pub fn run() {
-    simple_deref_example();
+    ref_count_example();
  }
 
+pub fn ref_count_example(){
+    let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));
+    let b = Cons(3, Box::new(a));                   // "b" now owns "a" which means we can't use "a" in "c" 
+    // let c = Cons(4, Box::new(a));
+}
 
- pub fn simple_deref_example() {
 
-    let x = 5;  
-    assert_eq!(5, x); 
-    
-    let y = &x;                 //ref to x, y is a basic pointer
-    assert_eq!(5, *y);                //pointer here//dereferencing y 
-    // assert_eq!(5, y);              //throws error: error[E0277]: can't compare `{integer}` with `&{integer}` which is why we use the dereference 
 
-    let z = Box::new(x);    //in this case Z is pointing to a "copy" of 
-    assert_eq!(5, *z);                //and so the box allows us to deref the same way but is almost a cheat since ints are copied when passed to a function anyway
-
-    let z1 = MyBox::new(x);
-    assert_eq!(5, *z1);               //Error until deref is impl for MyBox
-                                      //without the deref trait being impl the compiler only knows how to deref references.
-    
-                                    
- }
