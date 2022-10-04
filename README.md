@@ -9,7 +9,7 @@ that mirror a similar analogy that really drives the point home<br>
  - please comment a summary of code 
  - please comment datatypes, borrows, and ownership quirks
  - Please comment the flow of code if giving an extensive example with multiple modules. 
- - Please comment definitions of unique struct/enum types
+ - Please comment definitions of unique struct/enum types<br>
 <i>**If giving an error handling explanation, Please include the error code and the working(compiling) version of the code**</i>
 ### <b><i>Please review code one last time prior to submission</i></b>
 
