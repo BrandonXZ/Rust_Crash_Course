@@ -11,4 +11,6 @@
 > - Open a new terminal window in the ide or command prompt and navigate to the active directory you cloned this git repo into.
 > - Type "cargo run", and press enter.
 > - The commented out section should introduce the concept with the title namesake and at the end of the file point you to the next concept to learn.<br>
+
+
 <i>Good Luck!!</i> 
