@@ -1,5 +1,5 @@
 # Rust_Crash_Course
-A set of modules explaining how the rust program works and how it may be different from other languages within a given module
+A set of modules explaining how the rust programming language works and how it may be different from other languages within a given module
 
 
 Please feel free to contribute with separate modules that you feel are helpful or explain a key concept well!! 
