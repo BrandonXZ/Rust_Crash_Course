@@ -1,5 +1,5 @@
 <u><b>To get started in rust:</b></u></br>
-<i> Assuming you have the rust compiler installed(c++compiler files for vs code or other requirements installed, if not see the "installing rust" file)</i>
+<i> Assuming you have the rust compiler installed(c++compiler files for vs code or other requirements installed, if not see the "getting started with rust" file)</i>
 
 <i>Quite a few people should already know basic programming enough to skip this section but this is attempting to leave no stone unturned, since this guide will go up to far more advanced topics.</i>
 
